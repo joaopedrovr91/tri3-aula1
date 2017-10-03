@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 600f;
 	Rigidbody2D rb;
 	SpriteRenderer sr;
+	Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		sr = GetComponent<SpriteRenderer>();	
+		anim = GetComponent<Animator>();
 	}
 
 	
