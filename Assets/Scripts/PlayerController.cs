@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	SpriteRenderer sr;
 	Animator anim;
 
+	bool isJumping = false;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetButtonDown("Jump")) {
 			Jump();
 		}
+
+		ShowFalling();
 	}	
 
 
@@ -45,14 +49,35 @@ public class PlayerController : MonoBehaviour {
 		else if (speed > 0f){
 			sr.flipX = false;	
 		}
+		if(!isJumping){
+			anim.SetInteger("State", 3);
+		}
 	}
 
 	void StopMovingHorizontal(){
 		rb.velocity = new Vector2(0f, rb.velocity.y);
+		if(!isJumping){
+		anim.SetInteger("State", 0);
+		}
 
 	}
 
+	void ShowFalling(){
+		if(rb.velocity.y < 0f) {
+			anim.SetInteger("State", 3);
+		}
+	}
+
+
 	void Jump(){
+		isJumping = true;
 		rb.AddForce(new Vector2(0, jumpSpeed));
+		anim.SetInteger("State", 1);
+	}
+
+	void OnCollisionEnter2D(Collision2D other){
+		if(other.gameObject.layer == LayerMask.NameToLayer("Ground")){
+			isJumping = false;
+		}
 	}
 }
