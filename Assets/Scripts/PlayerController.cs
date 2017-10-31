@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 
 	public LayerMask whatIsGround;
 
+	bool canDoubleJump = false;
+	public float delayForDoubleJump = 0.2f;
 
 	// Use this for initialization
 	void Start () {
@@ -87,7 +89,20 @@ public class PlayerController : MonoBehaviour {
 		isJumping = true;
 		rb.AddForce(new Vector2(0, jumpSpeed));
 		anim.SetInteger("State", 1);
+
+		Invoke("EnableDoubleJump", delayForDoubleJump);
 		}
+
+		if(canDoubleJump && !isGrounded){
+			rb.velocity = Vector2.zero;
+			rb.AddForce(new Vector2(0, jumpSpeed));
+			anim.SetInteger("State", 1);
+			canDoubleJump = false;
+		}
+	}
+
+	void EnableDoubleJump(){
+		canDoubleJump = true;
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
