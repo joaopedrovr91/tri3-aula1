@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour {
 			sr.flipX = false;	
 		}
 		if(!isJumping){
-			anim.SetInteger("State", 3);
+			anim.SetInteger("State", 2);
 		}
 	}
 
