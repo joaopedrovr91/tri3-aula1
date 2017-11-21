@@ -35,7 +35,7 @@ public class UI {
 
 		[Header("Other")]
 
-		public GameObject GameOverPanel;
+		public GameObject gameOverPanel;
 	}
 
 	public HUD hud;
