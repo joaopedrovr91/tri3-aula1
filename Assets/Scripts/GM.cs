@@ -15,7 +15,7 @@ public class GM : MonoBehaviour {
 
 	public float timeToRespawn = 2f;
 
-	public float maxTime = 120f;
+	public float maxTime = 5f;
 
 	bool timerOn = true;
 
@@ -85,7 +85,7 @@ public class GM : MonoBehaviour {
 	void GameOver(){
 		timerOn = false;
 		ui.gameOver.txtCoinCount.text = "Coins: " + data.coinCount;
-		ui.gameOver.txtTimer.text = "Coins: " + timeLeft.ToString("F1");
+		ui.gameOver.txtTimer.text = "Timer: " + timeLeft.ToString("F1");
 		ui.gameOver.gameOverPanel.SetActive(true);
 	}
 
