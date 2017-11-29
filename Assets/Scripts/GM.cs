@@ -120,4 +120,12 @@ public class GM : MonoBehaviour {
 		public void RespawnPlayer(){
 		Instantiate(playerPrefab,SpawnPoint.position,SpawnPoint.rotation);
 	}
+
+	public void LevelComplete(){
+		Destroy(player.gameObject);
+		timerOn = false;
+		ui.levelComplete.txtCoinCount.text = "Coins: " + data.coinCount;
+		ui.levelComplete.txtTimer.text = "Timer: " + timeLeft.ToString("F1");
+		ui.levelComplete.levelCompletePanel.SetActive(true);
+	}
 }
